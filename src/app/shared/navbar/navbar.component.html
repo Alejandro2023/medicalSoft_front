@@ -1,0 +1,18 @@
+<div class="w-100 parent-box relative flex flex-wrap">
+  <div class="box-navbar w-100 overflow-auto">
+    <div class="w-100 flex justify-content-between p-1">
+      <div class="flex col-fixed p-1">
+        <div class="flex box-parent-menu">
+          <div
+            class="flex align-items-center px-2 m-1 personalized-card box-menu"
+            *ngFor="let item of rows"
+          >
+            <span [routerLink]="item['router_link']" class="label-menu">
+              {{ item["name_"] }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

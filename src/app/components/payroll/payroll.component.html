@@ -1,0 +1,19 @@
+<div class="h-100 after-navbar">
+  <div class="w-100 h-100 relative flex flex-wrap">
+    <div
+      class="box-navbar w-100 flex align-items-center justify-content-between overflow-auto"
+    >
+      <div class="flex align-items-center my-1">
+        <span class="col-fixed p-0 label-menu p-1">Nomina</span>
+      </div>
+    </div>
+    <div class="w-100 h-100">
+      <app-payroll-list
+        *ngIf="statusForm.list"
+        class="form w-100 h-100"
+        (statusFormEmit)="toggleEdit($event)"
+      >
+      </app-payroll-list>
+    </div>
+  </div>
+</div>

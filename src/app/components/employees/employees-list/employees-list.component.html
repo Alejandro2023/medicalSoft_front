@@ -1,0 +1,139 @@
+<div class="w-100 h-100">
+  <p-table
+    #dt
+    [value]="rows"
+    [(selection)]="rows"
+    dataKey="id"
+    [rowHover]="true"
+    [rows]="25"
+    [scrollable]="true"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0"
+    [globalFilterFields]="['name_', 'userDNI', 'role', 'salary', 'join_date']"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name_" style="min-width: 14rem" pFrozenColumn>
+          <div class="flex justify-content-between align-items-center">
+            Nombre
+            <p-sortIcon field="name_"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="name_"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="userDNI" style="min-width: 14rem">
+          <div class="flex justify-content-between align-items-center">
+            numero de identificación
+            <p-sortIcon field="userDNI"></p-sortIcon>
+            <p-columnFilter
+              type="number"
+              field="userDNI"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="role" style="min-width: 14rem">
+          <div class="flex justify-content-between align-items-center">
+            Cargo
+            <p-sortIcon field="role"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="role"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="salary" style="min-width: 14rem">
+          <div class="flex justify-content-between align-items-center">
+            Salario
+            <p-sortIcon field="salary"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="salary"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="join_date" style="min-width: 10rem">
+          <div class="flex justify-content-between align-items-center">
+            Fecha de ingreso
+            <p-sortIcon field="join_date"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="join_date"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th style="width: 11rem" pFrozenColumn></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row>
+      <tr class="p-selectable-row">
+        <td pFrozenColumn>
+          <span class="p-column-title">Nombre</span>
+          {{ row.name_ }}
+        </td>
+        <td>
+          <span class="p-column-title">Numero de identificación</span>
+          <span class="ml-1 vertical-align-middle">{{ row.userDNI }}</span>
+        </td>
+        <td>
+          <span class="p-column-title">Cargo</span>
+          <span class="ml-1 vertical-align-middle">{{ row.role }}</span>
+        </td>
+        <td>
+          <span class="p-column-title">Salario</span>
+          <span class="ml-1 vertical-align-middle">{{ row.salary }}</span>
+        </td>
+        <td>
+          <span class="p-column-title">Fecha de creacion</span>
+          {{ utils.dateToFormat(row.join_date) }}
+        </td>
+        <td style="text-align: center" pFrozenColumn>
+          <div
+            class="flex justify-content-center"
+            style="height: 35px; width: 100px"
+          >
+            <button
+              pButton
+              type="button"
+              icon="pi pi-pencil"
+              class="p-button-outlined p-button-primary button-form"
+              [pTooltip]="'editar'"
+              tooltipPosition="left"
+              (click)="edit(row.id)"
+            ></button>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-trash"
+              class="p-button-outlined p-button-danger"
+              [pTooltip]="'Eliminar'"
+              tooltipPosition="left"
+              (click)="delete(row.id)"
+            ></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">No customers found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

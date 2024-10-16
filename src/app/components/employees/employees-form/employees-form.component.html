@@ -1,0 +1,73 @@
+<div class="flex justify-content-center">
+  <p-card class="col-6" header="Formulario de empleados">
+    <form [formGroup]="form">
+      <div class="w-100 h-100">
+        <div class="w-100 p-1">
+          <label for="name_" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name_"
+            [class.is-invalid]="invalidName"
+          />
+          <small *ngIf="invalidName" class="text-danger"
+            >Ingrese un nombre valido</small
+          >
+        </div>
+        <div class="w-100 p-1">
+          <label for="userDNI" class="form-label"
+            >Documento de identificación</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            formControlName="userDNI"
+            [class.is-invalid]="invalidUserDNI"
+          />
+          <small *ngIf="invalidUserDNI" class="text-danger"
+            >Ingrese un numero de identificación valido</small
+          >
+        </div>
+        <div class="w-100 p-1">
+          <label for="role" class="form-label">Cargo</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="role"
+            [class.is-invalid]="invalidRole"
+          />
+          <small *ngIf="invalidRole" class="text-danger"
+            >Ingrese un cargo valido</small
+          >
+        </div>
+        <div class="w-100 p-1">
+          <label for="salary" class="form-label">Salario</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="salary"
+            [class.is-invalid]="invalidSalary"
+          />
+          <small *ngIf="invalidSalary" class="text-danger"
+            >Ingrese un salario valido</small
+          >
+        </div>
+        <div class="w-100 p-1">
+          <label for="join_date" class="form-label w-100"
+            >Fecha de ingreso</label
+          >
+          <p-calendar
+            class="w-100"
+            formControlName="join_date"
+            [class.is-invalid]="invalidDate"
+            [showIcon]="true"
+            dateFormat="M d yy"
+          ></p-calendar>
+          <small *ngIf="invalidDate" class="text-danger"
+            >Ingrese una fecha</small
+          >
+        </div>
+      </div>
+    </form>
+  </p-card>
+</div>

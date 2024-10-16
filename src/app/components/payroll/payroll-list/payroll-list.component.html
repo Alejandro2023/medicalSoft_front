@@ -1,0 +1,165 @@
+<div class="w-100 h-100">
+  <p-table
+    #dt
+    [value]="rows"
+    [(selection)]="rows"
+    dataKey="id"
+    [rowHover]="true"
+    [rows]="25"
+    [scrollable]="true"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0"
+    [globalFilterFields]="['name_', 'salary', 'join_date']"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name_" style="min-width: 14rem" pFrozenColumn>
+          <div class="flex justify-content-between align-items-center">
+            Nombre
+            <p-sortIcon field="name_"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="name_"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="salary" style="min-width: 14rem">
+          <div class="flex justify-content-between align-items-center">
+            Salario
+            <p-sortIcon field="salary"></p-sortIcon>
+            <p-columnFilter
+              type="number"
+              field="salary"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="pension" style="min-width: 14rem">
+          <div class="flex justify-content-between align-items-center">
+            Pensión
+            <p-sortIcon field="pension"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="pension"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="health_insurance" style="min-width: 14rem">
+          <div class="flex justify-content-between align-items-center">
+            Salud
+            <p-sortIcon field="health_insurance"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="health_insurance"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="sevarence_pay" style="min-width: 14rem">
+          <div class="flex justify-content-between align-items-center">
+            Cesantias
+            <p-sortIcon field="sevarence_pay"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="sevarence_pay"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="join_date" style="min-width: 10rem">
+          <div class="flex justify-content-between align-items-center">
+            Fecha de ingreso
+            <p-sortIcon field="join_date"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="join_date"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th style="width: 11rem" pFrozenColumn></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row>
+      <tr class="p-selectable-row">
+        <td pFrozenColumn>
+          <span class="p-column-title">Nombre</span>
+          {{ row.name_ }}
+        </td>
+        <td>
+          <span class="p-column-title">Salario</span>
+          <span class="ml-1 vertical-align-middle">{{ row.salary }}</span>
+        </td>
+        <td>
+          <span class="p-column-title">pension</span>
+          <span class="ml-1 vertical-align-middle">{{ row.pension }}</span>
+        </td>
+        <td>
+          <span class="p-column-title">Salud</span>
+          <span class="ml-1 vertical-align-middle">{{
+            row.health_insurance
+          }}</span>
+        </td>
+        <td>
+          <span class="p-column-title">Cesantias</span>
+          <span class="ml-1 vertical-align-middle">{{
+            row.sevarence_pay
+          }}</span>
+        </td>
+        <td>
+          <span class="p-column-title">Fecha de creacion</span>
+          {{ utils.dateToFormat(row.join_date) }}
+        </td>
+        <td style="text-align: center" pFrozenColumn>
+          <div
+            class="flex justify-content-center"
+            style="height: 35px; width: 100px"
+          >
+            <button
+              pButton
+              type="button"
+              icon="pi pi-file-pdf"
+              class="p-button-outlined p-button-secundary button-form"
+              [pTooltip]="'PDF'"
+              tooltipPosition="left"
+              (click)="createPDF(row)"
+            ></button>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-file-plus"
+              class="p-button-outlined p-button-warning"
+              [pTooltip]="'Detalle'"
+              tooltipPosition="left"
+              (click)="summaryPayroll(row)"
+            ></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">No customers found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-sidebar [(visible)]="isSummaryPayroll" position="right" styleClass="w-30rem">
+  <div *ngIf="rowsSummaryPayroll">
+    <h3 style="position: fixed; top: 20px">{{ rowsSummaryPayroll.name_ }}</h3>
+  </div>
+</p-sidebar>
