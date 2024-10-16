@@ -1,1 +1,58 @@
-<p>dashboard works!</p>
+<div class="main-container w-100 h-100 pt-2">
+  <div class="container-fluid full-height pt-1" *ngFor="let row of rows">
+    <p-scrollPanel
+      styleClass="main-card p-card shadow-lg d-flex flex-column align-items-center"
+    >
+      <span class="label-menu pl-1">{{ row.name_ + " - " + row.salary }}</span>
+      <div class="row d-flex align-items-center">
+        <div class="col-md-4 mt-3">
+          <div class="inner-card p-card shadow-lg">
+            <div class="card-content row">
+              <span class="col-md-12 label-menu pl-1">Deducciones legales</span>
+              <span class="col-md-12 pl-3">Salud: {{ row.salary * 0.04 }}</span>
+              <span class="col-md-12 pl-3"
+                >Pensión {{ row.salary * 0.04 }}</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-3">
+          <div class="inner-card p-card shadow-lg">
+            <div class="card-content row">
+              <span class="col-md-12 label-menu pl-1"
+                >aportes del empleador</span
+              >
+              <span class="col-md-12 pl-3"
+                >Salud: {{ row.salary * 0.085 }}</span
+              >
+              <span class="col-md-12 pl-3"
+                >Pensión {{ row.salary * 0.12 }}</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mt-3 p-0">
+          <div class="inner-card p-card shadow-lg">
+            <div class="card-content row">
+              <span class="col-md-12 label-menu pl-1"
+                >prestaciones sociales</span
+              >
+              <span class="col-md-12 pl-3"
+                >Cesantias: {{ row.salary * 0.0833 }}</span
+              >
+              <span class="col-md-12 pl-3"
+                >Intereses de cesasantias {{ row.salary * 0.0833 * 0.01 }}</span
+              >
+              <span class="col-md-12 pl-3"
+                >Prima de servicios: {{ row.salary * 0.5 }}</span
+              >
+              <span class="col-md-12 pl-3"
+                >Vacaciones {{ row.salary * 0.5 }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-scrollPanel>
+  </div>
+</div>

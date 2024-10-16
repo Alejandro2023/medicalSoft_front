@@ -42,7 +42,7 @@
     </div>
     <div class="w-100 h-100">
       <app-employees-form
-        #employeeForm
+        #productForm
         *ngIf="statusForm.create || statusForm.edit"
         (statusFormEmit)="toggleCreate($event)"
         [statusForm]="statusForm"

@@ -56,7 +56,7 @@ export class PayrollListComponent extends BaseListDirective implements OnInit {
     const pdfDefinition: any = {
       content: [
         {
-          text: 'Información de Nómina',
+          text: `Información de Nómina: ${row.name_}`,
           style: 'header',
         },
         {

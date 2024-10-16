@@ -22,4 +22,10 @@ export class DashboardComponent extends BaseListDirective implements OnInit {
     this.listService = this.payrollService.employees();
     this.getItems();
   }
+
+  override handleLoadData(data: []) {
+    console.log(data);
+    this.rows = data;
+    this.loading = false;
+  }
 }

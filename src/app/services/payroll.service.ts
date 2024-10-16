@@ -5,58 +5,35 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PayrollService {
   url = 'http://localhost:9094/api';
-  options = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
-  headers: any = '';
-  constructor(private http: HttpClient, private toastr: ToastrService) {
-    const token = localStorage.getItem('token');
-    this.headers = new HttpHeaders({ 'Content-Type': 'application/json' }).set(
-      'Authorization',
-      'Bearer ' + token
-    );
-  }
+  constructor(private http: HttpClient) {}
 
   employeePost(data: String): Observable<any> {
-    return this.http.post<any>(this.url + '/employees', data, this.options);
+    return this.http.post<any>(this.url + '/employees', data);
   }
 
   employeePut(id: number, data: object): Observable<any> {
-    return this.http.put<any>(this.url + '/employees/' + id, data, {
-      headers: this.headers,
-    });
+    return this.http.put<any>(this.url + '/employees/' + id, data);
   }
 
   employeeDelete(id: number): Observable<any> {
-    return this.http.put<any>(this.url + '/employees/delete/' + id, null, {
-      headers: this.headers,
-    });
+    return this.http.put<any>(this.url + '/employees/delete/' + id, null);
   }
 
   employees(): Observable<any> {
-    return this.http.get<any>(this.url + '/employees', {
-      headers: this.headers,
-    });
+    return this.http.get<any>(this.url + '/employees');
   }
 
   employee(id: number): Observable<any> {
-    return this.http.get<any>(this.url + '/employees/' + id, {
-      headers: this.headers,
-    });
+    return this.http.get<any>(this.url + '/employees/' + id);
   }
 
   menu(): Observable<any> {
-    return this.http.get<any>(this.url + '/menu', {
-      headers: this.headers,
-    });
+    return this.http.get<any>(this.url + '/menu');
   }
 }

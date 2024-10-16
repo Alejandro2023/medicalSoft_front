@@ -124,10 +124,7 @@
           {{ utils.dateToFormat(row.join_date) }}
         </td>
         <td style="text-align: center" pFrozenColumn>
-          <div
-            class="flex justify-content-center"
-            style="height: 35px; width: 100px"
-          >
+          <div class="flex gap-2" style="height: 35px; width: 100px">
             <button
               pButton
               type="button"
@@ -136,15 +133,6 @@
               [pTooltip]="'PDF'"
               tooltipPosition="left"
               (click)="createPDF(row)"
-            ></button>
-            <button
-              pButton
-              type="button"
-              icon="pi pi-file-plus"
-              class="p-button-outlined p-button-warning"
-              [pTooltip]="'Detalle'"
-              tooltipPosition="left"
-              (click)="summaryPayroll(row)"
             ></button>
           </div>
         </td>
